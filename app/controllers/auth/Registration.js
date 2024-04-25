@@ -13,12 +13,13 @@ const Registration = catchAsync(
         if (user) throw new ApiError(httpStatus.BAD_REQUEST, 'Account already exists!');
 
         //** creating user
-        await User.create(req.body);
+        const data = await User.create(req.body);
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
             success: true,
             message: `${req.body.role === ENUM_USER_ROLE.ADMIN ? 'Admin' : 'User'} created successfully!`,
+            data
         });
     }
 )
