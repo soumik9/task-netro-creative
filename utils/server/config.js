@@ -11,4 +11,6 @@ export default {
     TOKEN_SECRET_ADMIN: process.env.TOKEN_SECRET_ADMIN,
 
     TOKEN_SECRET_EXP: process.env.TOKEN_SECRET_EXP,
+
+    BYCRYPT_SALT_ROUND: process.env.BYCRYPT_SALT_ROUND,
 };

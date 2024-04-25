@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import validator from "validator";
 import { ENUM_USER_ROLE } from '../../utils/constants/constants.js';
+import config from '../../utils/server/config.js';
 
 const userSchema = new Schema({
     name: {
@@ -44,7 +45,7 @@ userSchema.pre("save", async function (next) {
     }
 
     const password = this.password;
-    const hashedPassword = await bcrypt.hashSync(password, 10);
+    const hashedPassword = await bcrypt.hashSync(password, Number(config.BYCRYPT_SALT_ROUND));
 
     this.password = hashedPassword;
 
