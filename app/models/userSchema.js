@@ -10,15 +10,12 @@ const userSchema = new Schema({
     },
     address: {
         type: String,
-        required: [true, 'Address field is required']
     },
     phoneNumber: {
         type: String,
-        required: [true, 'Address field is required']
     },
     image: {
         type: String,
-        required: [true, 'Image url is required']
     },
     email: {
         type: String,
@@ -36,7 +33,7 @@ const userSchema = new Schema({
             values: [ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER],
             message: `Status value can not be {VALUE}, must be ${ENUM_USER_ROLE.ADMIN}/${ENUM_USER_ROLE.USER}`
         },
-        required: [true, 'Role field is required'],
+        default: ENUM_USER_ROLE.USER,
     },
 }, { timestamps: true });
 
