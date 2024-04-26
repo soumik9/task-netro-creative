@@ -1,8 +1,10 @@
+import { ZodError } from 'zod';
 import ApiError from '../errors/ApiError.js';
 import handleValidationError from '../errors/handleValidationError.js';
 import handleCastError from '../errors/handleCastError.js';
 import config from '../server/config.js';
 import { errorLogger } from './logger/logger.js';
+import handleZodError from '../errors/handleZodError.js';
 
 const globalErrorHandler = (
     error,
@@ -20,9 +22,13 @@ const globalErrorHandler = (
     let message = 'Something went wrong !';
     let errorMessages = [];
 
-    //! validation error
-    if (error?.name === 'ValidationError') {
+    if (error?.name === 'ValidationError') {   //! validation error
         const simplifiedError = handleValidationError(error);
+        statusCode = simplifiedError.statusCode;
+        message = simplifiedError.message;
+        errorMessages = simplifiedError.errorMessages;
+    } else if (error instanceof ZodError) { //! zod request validation error handle
+        const simplifiedError = handleZodError(error);
         statusCode = simplifiedError.statusCode;
         message = simplifiedError.message;
         errorMessages = simplifiedError.errorMessages;
