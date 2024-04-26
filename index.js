@@ -1,11 +1,15 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import routes from './app/routers/routes.js';
 import httpStatus from 'http-status';
+import 'dotenv/config'
+
+//** custom imports
+import routes from './app/routers/routes.js';
 import bootstrap from './utils/server/bootstrap.js';
 import globalErrorHandler from './utils/helpers/globalErrorHandler.js';
-import 'dotenv/config'
+import limiter from './utils/server/limiter.js';
+
 
 const app = express();
 
@@ -14,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(limiter) //? apply rate limitter
 
 //** all routes
 app.use('/api/v1', routes);

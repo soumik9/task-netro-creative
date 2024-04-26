@@ -2,8 +2,10 @@ import { createLogger, format, transports } from 'winston'
 const { combine, timestamp, label, printf, prettyPrint } = format
 import path from 'path'
 
+//** custom logger messege
 const customFormat = printf(({ level, message, label, timestamp }) => {
 
+    //? customizing timestamp
     const date = new Date(timestamp);
     const hour = date.getHours();
     const minutes = date.getMinutes();

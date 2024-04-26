@@ -20,6 +20,12 @@
 - Server related all errors, sucess, info will be stored on logs folder
 - Global error handler error will be store when application on `Production` mode
 
+## Prevent any bad actors from using brute force attack
+
+- I have used `express-rate-limit` package for a specific ip to request maximum time in a specific time limit.
+- When we request a api, in `Header` we can see `maximum rate limit` and `remaining rate limit`.
+- After hitting maxium hit on api, if again  hit on api it will show an customize respone messege.
+
 ## API's
 
 1. User Register

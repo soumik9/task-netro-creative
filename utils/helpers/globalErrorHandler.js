@@ -11,6 +11,7 @@ const globalErrorHandler = (
     next
 ) => {
 
+    //? handle store errors when application on production mode
     config.ENVIRONMENT === 'development'
         ? console.log('global error handler ~ ', error)
         : errorLogger.error('global error handler ~ ', error);
@@ -19,17 +20,18 @@ const globalErrorHandler = (
     let message = 'Something went wrong !';
     let errorMessages = [];
 
+    //! validation error
     if (error?.name === 'ValidationError') {
         const simplifiedError = handleValidationError(error);
         statusCode = simplifiedError.statusCode;
         message = simplifiedError.message;
         errorMessages = simplifiedError.errorMessages;
-    } else if (error?.name === 'CastError') {
+    } else if (error?.name === 'CastError') { //! mongodb id cast error handle
         const simplifiedError = handleCastError(error);
         statusCode = simplifiedError.statusCode;
         message = simplifiedError.message;
         errorMessages = simplifiedError.errorMessages;
-    } else if (error instanceof ApiError) {
+    } else if (error instanceof ApiError) { //! custom api error handler
         statusCode = error?.statusCode;
         message = error.message;
         errorMessages = error?.message

@@ -1,3 +1,5 @@
+//** customized reusable response 
+
 const sendResponse = (res, data) => {
     const responseData = {
         statusCode: data.statusCode,
