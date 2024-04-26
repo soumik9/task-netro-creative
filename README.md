@@ -10,10 +10,15 @@
 ## How you will run this application to your machine?
 
 1. Check that, you have install `Node.js` on your machine.
-2. Clone the repository or download the code as zip and extract code.
+2. Clone the `main` branch of repository or download the code as zip and extract code.
 3. Open `command prompt` on the specific folder and run command `yarn` or `npm i`
 4. Create a file name `.env` and copy all from `.env.example` then place the mongodb uri and other token as required.
 5. All set, now run `command prompt` this command `yarn dev` or `npm run dev`
+
+## Logs Note
+
+- Server related all errors, sucess, info will be stored on logs folder
+- Global error handler error will be store when application on `Production` mode
 
 ## API's
 

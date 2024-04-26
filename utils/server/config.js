@@ -6,6 +6,7 @@ dotenv.config({ path: path.join(process.cwd(), '.env') });
 export default {
     PORT: process.env.PORT,
     MONGO_CONNECTION: process.env.MONGO_CONNECTION,
+    ENVIRONMENT: process.env.ENVIRONMENT,
 
     TOKEN_SECRET: process.env.TOKEN_SECRET,
     TOKEN_SECRET_ADMIN: process.env.TOKEN_SECRET_ADMIN,

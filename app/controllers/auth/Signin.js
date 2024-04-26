@@ -21,8 +21,6 @@ const Signin = catchAsync(
         const isValidPassword = await bcrypt.compareSync(req.body.password, user.password);
         if (!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED, 'Credential mismatch!');
 
-        console.log(user);
-
         //** token
         const token = generateToken(user, user.role === ENUM_USER_ROLE.ADMIN ? true : false);
 

@@ -9,22 +9,23 @@ import 'dotenv/config'
 
 const app = express();
 
-//middleware
+//** middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-// all routes
+//** all routes
 app.use('/api/v1', routes);
 
-// files route
-// app.use('/public', express.static('public'))
+//** files route
+app.use('/public', express.static('public'))
 
-//global error handler
+
+//! global error handler
 app.use(globalErrorHandler);
 
-//handle not found
+//! handle not found
 app.use((req, res) => {
     res.status(httpStatus.NOT_FOUND).json({
         success: false,
@@ -38,18 +39,12 @@ app.use((req, res) => {
     });
 });
 
-
-// server related works
-process.on('uncaughtException', error => {
-    console.log(error, 'uncaughtException');
-    process.exit(1);
-});
-
-let server;
+//** database and server connection
 bootstrap(app);
 
+//! to send a signal to terminate server
 process.on('SIGTERM', () => {
-    console.log('SIGTERM is received');
+    logger.info('SIGTERM is received');
     if (server) {
         server.close();
     }

@@ -1,6 +1,8 @@
 import ApiError from '../errors/ApiError.js';
 import handleValidationError from '../errors/handleValidationError.js';
 import handleCastError from '../errors/handleCastError.js';
+import config from '../server/config.js';
+import { errorLogger } from './logger/logger.js';
 
 const globalErrorHandler = (
     error,
@@ -8,6 +10,10 @@ const globalErrorHandler = (
     res,
     next
 ) => {
+
+    config.ENVIRONMENT === 'development'
+        ? console.log('global error handler ~ ', error)
+        : errorLogger.error('global error handler ~ ', error);
 
     let statusCode = 500;
     let message = 'Something went wrong !';
