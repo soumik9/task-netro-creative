@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import User from "../../models/userSchema.js";
 import httpStatus from "http-status";
 import sendResponse from "../../../utils/helpers/SendResponse.js";
@@ -18,7 +18,7 @@ const Signin = catchAsync(
         if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'Not registered! Please try again after registration.');
 
         //! checking is valid password
-        const isValidPassword = await bcrypt.compareSync(req.body.password, user.password);
+        const isValidPassword = await bcrypt.compare(req.body.password, user.password);
         if (!isValidPassword) throw new ApiError(httpStatus.UNAUTHORIZED, 'Credential mismatch!');
 
         //** token

@@ -1,9 +1,10 @@
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcrypt'
 import httpStatus from "http-status";
 import User from "../../models/userSchema.js";
 import sendResponse from "../../../utils/helpers/SendResponse.js";
 import catchAsync from "../../../utils/helpers/catchAsync.js";
 import { ENUM_USER_ROLE } from '../../../utils/constants/constants.js';
+import config from '../../../utils/server/config.js';
 
 const UpdateUser = catchAsync(async (req, res) => {
 
@@ -20,7 +21,7 @@ const UpdateUser = catchAsync(async (req, res) => {
 
     //** if there is password converting to hash passowrd
     if (body.password && body.password !== 'undefined') {
-        const hashedPassword = await bcrypt.hashSync(body.password, Number(config.BYCRYPT_SALT_ROUND));
+        const hashedPassword = await bcrypt.hash(body.password, Number(config.BYCRYPT_SALT_ROUND));
         updatedData = { ...updatedData, password: hashedPassword }
     }
 

@@ -17,7 +17,7 @@
 ## Some Packages
 
 - [x] jsonwebtoken - to validate authentication
-- [x] bcryptjs - to convert password to hash password
+- [x] bcrypt - to convert password to hash password
 - [x] Zod - to validate request
 - [x] express-rate-limit - to limti request
 - [x] winston - server logs

@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import validator from "validator";
 import { ENUM_USER_ROLE } from '../../utils/constants/constants.js';
 import config from '../../utils/server/config.js';
@@ -46,7 +46,7 @@ userSchema.pre("save", async function (next) {
     }
 
     const password = this.password;
-    const hashedPassword = await bcrypt.hashSync(password, Number(config.BYCRYPT_SALT_ROUND));
+    const hashedPassword = await bcrypt.hash(password, Number(config.BYCRYPT_SALT_ROUND));
 
     this.password = hashedPassword;
 
