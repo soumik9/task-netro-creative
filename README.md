@@ -24,6 +24,8 @@
 - [x] multer - upload file image
 - [x] http-status - for http code
 - [x] morgan - for logs in console which api hits
+- [x] express-mongo-sanitize -no sql injection santize
+- [x] xss-clean - remove xss attach which is remove any html code with body
 
 ## How you will run this application to your machine?
 
@@ -45,6 +47,7 @@
 - When we request a api, in `Header` we can see `maximum rate limit` and `remaining rate limit`.
 - After hitting maxium hit on api, if again  hit on api it will show an customize respone messege.
 - And, used `zod` validation to validate request.
+- remove no sql injection and xss attack
 
 ## API's
 

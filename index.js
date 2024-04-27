@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import httpStatus from 'http-status';
+import sanitize from 'express-mongo-sanitize'
+import xss from 'xss-clean'
 import 'dotenv/config'
 
 //** custom imports
@@ -17,7 +19,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+
 app.use(limiter) //? apply rate limitter
+app.use(sanitize()) //? apply to clear $ and . characters are removed
+app.use(xss()) //? prevent xss attack 
 
 //** all routes
 app.use('/api/v1', routes);

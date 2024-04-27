@@ -178,3 +178,51 @@
   label: 'right now!',
   timestamp: '2024-04-27T08:44:44.355Z'
 }
+{
+  message: '\x1B[31mDatabase is connected successfully\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T08:45:00.636Z'
+}
+{
+  message: '\x1B[35mListening on port http://localhost:6001/api/v1\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T08:45:00.643Z'
+}
+{
+  message: '\x1B[31mDatabase is connected successfully\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T09:47:49.031Z'
+}
+{
+  message: '\x1B[35mListening on port http://localhost:6001/api/v1\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T09:47:49.044Z'
+}
+{
+  message: '\x1B[31mDatabase is connected successfully\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T09:50:01.041Z'
+}
+{
+  message: '\x1B[35mListening on port http://localhost:6001/api/v1\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T09:50:01.051Z'
+}
+{
+  message: '\x1B[31mDatabase is connected successfully\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T09:51:03.699Z'
+}
+{
+  message: '\x1B[35mListening on port http://localhost:6001/api/v1\x1B[39m',
+  level: 'info',
+  label: 'right now!',
+  timestamp: '2024-04-27T09:51:03.707Z'
+}
