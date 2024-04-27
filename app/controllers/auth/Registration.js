@@ -4,6 +4,7 @@ import sendResponse from "../../../utils/helpers/SendResponse.js";
 import catchAsync from "../../../utils/helpers/catchAsync.js";
 import ApiError from "../../../utils/errors/ApiError.js";
 import { ENUM_USER_ROLE } from "../../../utils/constants/constants.js";
+import { sendMessageToQueue } from "../../../utils/server/messageQueue.js";
 
 const Registration = catchAsync(
     async (req, res) => {
@@ -14,6 +15,9 @@ const Registration = catchAsync(
 
         //** creating user
         const data = await User.create(req.body);
+
+        //** Send message to queue for further processing
+        // sendMessageToQueue({ userId: data._id, email: data.email });
 
         sendResponse(res, {
             statusCode: httpStatus.OK,

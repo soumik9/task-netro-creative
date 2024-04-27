@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import colors from 'colors';
 import { errorLogger, logger } from "../helpers/logger/logger.js";
 import config from "./config.js";
+import { connectToQueue } from "./messageQueue.js";
 
 //! server related works
 process.on('uncaughtException', error => {

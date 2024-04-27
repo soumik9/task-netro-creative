@@ -15,6 +15,14 @@ const updateAnyUserZodSchema = z.object({
     }).passthrough().optional(),
 });
 
+//? delete user/admin request zod validation
+const deleteUserZodSchema = z.object({
+    params: z.object({
+        userId: z.string()
+    }),
+});
+
 export const adminValidation = {
     updateAnyUserZodSchema,
+    deleteUserZodSchema,
 };

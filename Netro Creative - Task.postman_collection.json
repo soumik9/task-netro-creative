@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "53ca3331-287d-4f23-8d8c-2d34f5ed04f8",
+		"name": "Netro Creative - Task",
+		"description": "**Features**\n\n- Admin and User authentication.\n- Admin and User update own profile.\n- Admin can update any user.\n- Admin can delete user by id.\n- Admin can request get all users\n    \n\n**Technologies**\n\n- Node.js\n- Express.js\n- MongoDB\n    \n\n**Some Packages**\n\n- jsonwebtoken - to validate authentication\n- bcryptjs - to convert password to hash password\n- Zod - to validate request\n- express-rate-limit - to limti request\n- winston - server logs\n- multer - upload file image\n- http-status - for http code\n- morgan - for logs in console which api hits\n    \n\n**How you will run this application to your machine?**\n\n1. Check that, you have install \\`Node.js\\` on your machine.\n2. Clone the \\`main\\` branch of repository or download the code as zip and extract code.\n3. Open \\`command prompt\\` on the specific folder and run command \\`yarn\\` or \\`npm i\\`\n4. Create a file name \\`.env\\` and copy all from \\`.env.example\\` then place the mongodb uri and other token as required.\n5. All set, now run \\`command prompt\\` this command \\`yarn dev\\` or \\`npm run dev\\`\n    \n\n**Logs Note**\n\n- Server related all errors, sucess, info will be stored on logs folder.\n- Global error handler error will be store when application on \\`Production\\` mode.\n    \n\n**Prevent any bad actors from using brute force attack or sql injection**  \n  \n\n- I have used \\`express-rate-limit\\` package for a specific ip to request maximum time in a specific time limit.\n- When we request a api, in \\`Header\\` we can see \\`maximum rate limit\\` and \\`remaining rate limit\\`.\n- After hitting maxium hit on api, if again hit on api it will show an customize respone messege.\n    \n- StartFragmentAnd, used \\`zod\\` validation to validate request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18583826"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"soumik\",\r\n    \"email\": \"soumik.ahammed.11@gmail.com\",\r\n    \"password\": \"abcabc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}auth/register",
+							"host": [
+								"{{URL}}auth"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "- name, email and password field are required for user registraion\n    \n- the default role will be set automatically to user."
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mr Y\",\r\n    \"email\": \"mry@gmail.com\",\r\n    \"password\": \"abcabc\",\r\n    \"role\": \"xx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}auth/register",
+							"host": [
+								"{{URL}}auth"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "- name, email and password field are required for user registraion\n    \n- role must be set to user ."
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"abcabc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}auth/signin",
+							"host": [
+								"{{URL}}auth"
+							],
+							"path": [
+								"signin"
+							]
+						},
+						"description": "You can login by sending json data like this and in respone you will retrive user data and some other stuff. There will be a message which will show login success as admin or user!"
+					},
+					"response": []
+				},
+				{
+					"name": "User Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"password\": \"abcabc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}auth/signin",
+							"host": [
+								"{{URL}}auth"
+							],
+							"path": [
+								"signin"
+							]
+						},
+						"description": "You can login by sending json data like this and in respone you will retrive user data and some other stuff. There will be a message which will show login success as admin or user!"
+					},
+					"response": []
+				}
+			],
+			"description": "API's\n\n- [http://localhost:6001/api/v1/auth/register](http://localhost:6001/api/v1/auth/register)\n    \n- [http://localhost:6001/api/v1/auth/signin](http://localhost:6001/api/v1/auth/signin)"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJfaWQiOiI2NjJhYTIxMTE1MGIzMjM5OGFmN2U2OGMiLCJpYXQiOjE3MTQwNzA4OTksImV4cCI6MTcxNDY3NTY5OX0.niYduf5pQeQk4p3obBWA3fC93gAXUndbG0uCv7BZvms",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{\"name\":  \"User\", \"adress\": \"ngn\", \"phoneNumber\": \"01689201370\"}",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/E:/Work Pics/Business-Development-Manager-Profile-Photo.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}user/update",
+							"host": [
+								"{{URL}}user"
+							],
+							"path": [
+								"update"
+							]
+						},
+						"description": "- By auth middleware verifing token and set in request the token data\n- form token data getting user id and by that user id updating user profile data\n- must add authroization token of a user\n- on update profile can not update role as requirement 2(1)"
+					},
+					"response": []
+				}
+			],
+			"description": "API's\n\n1. [http://localhost:6001/api/v1/user/update](http://localhost:6001/api/v1/user/update)\n    \n2. [http://localhost:6001/api/v1/admin/update](http://localhost:6001/api/v1/admin/update)"
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Update Admin Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIl9pZCI6IjY2MmFhMmFjMTUwYjMyMzk4YWY3ZTY5MCIsImlhdCI6MTcxNDA3NTc0OCwiZXhwIjoxNzE0NjgwNTQ4fQ.etQgJk-VM1QVQmKsLUsVfiKbdClNsIO5Wo1-MLCSSr4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{\"name\":  \"Admin\", \"adress\": \"ngn\", \"phoneNumber\": \"01689201370\"}",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/E:/Work Pics/allu-arjun-image-7.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}admin/update",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"update"
+							]
+						},
+						"description": "- By auth middleware verifing token and set in request the token data\n- form token data getting admin id and by that admin id updating admin profile data\n- must add authroization token of a admin\n    \n- on update profile can not update role as requirement 2(1)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIl9pZCI6IjY2MmFhMmFjMTUwYjMyMzk4YWY3ZTY5MCIsImlhdCI6MTcxNDA3NTc0OCwiZXhwIjoxNzE0NjgwNTQ4fQ.etQgJk-VM1QVQmKsLUsVfiKbdClNsIO5Wo1-MLCSSr4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{\"name\":  \"Tanvir xd\", \"adress\": \"ngn\", \"phoneNumber\": \"01689201370\", \"role\": \"user\"}",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Asus/Desktop/Professional/circle-pp (1).png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}admin/update-user/662abd31306eaf39bcfc34ca",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"update-user",
+								"662abd31306eaf39bcfc34ca"
+							]
+						},
+						"description": "- only admin can access this url\n    \n- taking user id from url param\n    \n- must add authroization token of a admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIl9pZCI6IjY2MmFhMmFjMTUwYjMyMzk4YWY3ZTY5MCIsImlhdCI6MTcxNDIwNDg3NiwiZXhwIjoxNzE0ODA5Njc2fQ.VigpOE8zCzds-_suj1_B55em_uNXvm9Vd28q30lb7HY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}admin/users",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Get all users with admin authentication"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIl9pZCI6IjY2MmFhMmFjMTUwYjMyMzk4YWY3ZTY5MCIsImlhdCI6MTcxNDIwNDg3NiwiZXhwIjoxNzE0ODA5Njc2fQ.VigpOE8zCzds-_suj1_B55em_uNXvm9Vd28q30lb7HY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}admin/delete/662c20c95a1ee78aab522ea9",
+							"host": [
+								"{{URL}}admin"
+							],
+							"path": [
+								"delete",
+								"662c20c95a1ee78aab522ea9"
+							]
+						},
+						"description": "Delete user with a user id and admin authentication"
+					},
+					"response": []
+				}
+			],
+			"description": "API's\n\n- [http://localhost:6001/api/v1/admin/update](http://localhost:6001/api/v1/admin/update)\n- [http://localhost:6001/api/v1/admin/update-user/662abd31306eaf39bcfc34ca](http://localhost:6001/api/v1/admin/update-user/662abd31306eaf39bcfc34ca)\n- [http://localhost:6001/api/v1/admin/users](http://localhost:6001/api/v1/admin/users)\n    \n- [http://localhost:6001/api/v1/admin/delete/662c20c95a1ee78aab522ea9](http://localhost:6001/api/v1/admin/delete/662c20c95a1ee78aab522ea9)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

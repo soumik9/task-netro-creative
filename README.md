@@ -4,8 +4,26 @@
 
 - [x] Admin and User authentication.
 - [x] Admin and User update own profile.
-- [x] Admin can update any user.
+- [x] Admin can update user by id.
+- [x] Admin can delete user by id.
+- [x] Admin can request get all users.
 
+## Technologies
+
+- [x] Node.js
+- [x] Express.js
+- [x] MongoDB
+
+## Some Packages
+
+- [x] jsonwebtoken - to validate authentication
+- [x] bcryptjs - to convert password to hash password
+- [x] Zod - to validate request
+- [x] express-rate-limit - to limti request
+- [x] winston - server logs
+- [x] multer - upload file image
+- [x] http-status - for http code
+- [x] morgan - for logs in console which api hits
 
 ## How you will run this application to your machine?
 
@@ -14,17 +32,19 @@
 3. Open `command prompt` on the specific folder and run command `yarn` or `npm i`
 4. Create a file name `.env` and copy all from `.env.example` then place the mongodb uri and other token as required.
 5. All set, now run `command prompt` this command `yarn dev` or `npm run dev`
+6. Additional, use `better comment` extention to read comments 
 
 ## Logs Note
 
 - Server related all errors, sucess, info will be stored on logs folder
 - Global error handler error will be store when application on `Production` mode
 
-## Prevent any bad actors from using brute force attack
+## Prevent any bad actors from using brute force attack or sql injection
 
 - I have used `express-rate-limit` package for a specific ip to request maximum time in a specific time limit.
 - When we request a api, in `Header` we can see `maximum rate limit` and `remaining rate limit`.
 - After hitting maxium hit on api, if again  hit on api it will show an customize respone messege.
+- And, used `zod` validation to validate request.
 
 ## API's
 
@@ -127,7 +147,7 @@ data = {"name": "Admin", "adress": "ngn", "phoneNumber": "01689201370"}
 image = /C:/Users/Asus/Desktop/When-should-I-use-PNG-or-JPG.jpg
 ```
 
-7. Update Any User (Admin)
+7. Update User By Id (Admin)
 
 ```bash
 http://localhost:6001/api/v1/admin/update-user/662abd31306eaf39bcfc34ca
@@ -142,3 +162,19 @@ http://localhost:6001/api/v1/admin/update-user/662abd31306eaf39bcfc34ca
 data = {"name": "Tanvir Islam", "adress": "ngn", "phoneNumber": "01689201370", "role": "user"}
 image = /C:/Users/Asus/Desktop/Professional/circle-pp (1).png
 ```
+
+8. Get all users (Admin)
+
+```bash
+http://localhost:6001/api/v1/admin/users
+```
+
+- Get all users with admin authentication
+
+9. Delete User By Id (Admin)
+
+```bash
+http://localhost:6001/api/v1/admin/delete/662c20c95a1ee78aab522ea9
+```
+
+- Delete user with a user id and admin authentication

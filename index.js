@@ -10,7 +10,6 @@ import bootstrap from './utils/server/bootstrap.js';
 import globalErrorHandler from './utils/helpers/globalErrorHandler.js';
 import limiter from './utils/server/limiter.js';
 
-
 const app = express();
 
 //** middleware
@@ -25,7 +24,6 @@ app.use('/api/v1', routes);
 
 //** files route
 app.use('/public', express.static('public'))
-
 
 //! global error handler
 app.use(globalErrorHandler);

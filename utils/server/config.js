@@ -14,4 +14,7 @@ export default {
     TOKEN_SECRET_EXP: process.env.TOKEN_SECRET_EXP,
 
     BYCRYPT_SALT_ROUND: process.env.BYCRYPT_SALT_ROUND,
+
+    GMAIL_PASS: process.env.GMAIL_PASS,
+    GMAIL_ID: process.env.GMAIL_ID,
 };

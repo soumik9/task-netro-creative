@@ -4,7 +4,7 @@ import User from "../../models/userSchema.js";
 import sendResponse from "../../../utils/helpers/SendResponse.js";
 import catchAsync from "../../../utils/helpers/catchAsync.js";
 
-const UpdateAnyUser = catchAsync(async (req, res) => {
+const UpdateUserById = catchAsync(async (req, res) => {
 
     const userId = req.params.userId; //** geting user id from url params
     let body = JSON.parse(req.body.data); //** parsing body data
@@ -37,4 +37,4 @@ const UpdateAnyUser = catchAsync(async (req, res) => {
 }
 )
 
-export default UpdateAnyUser
+export default UpdateUserById
